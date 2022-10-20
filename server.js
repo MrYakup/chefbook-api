@@ -66,7 +66,7 @@ mongoose.connection.on('error', err => {
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://chefbook.onrender.com",
       credentials: true, 
     },
   });
