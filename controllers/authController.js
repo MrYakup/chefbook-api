@@ -26,6 +26,7 @@ const login = async (req, res) => {
         {
             "UserInfo": {
                 "id": foundUser._id,
+                "name": foundUser.name,
                 "username": foundUser.username,
                 "roles": foundUser.roles,
                 "image": foundUser.image
@@ -36,7 +37,7 @@ const login = async (req, res) => {
     )
 
     const refreshToken = jwt.sign(
-        {"id": foundUser._id, "username": foundUser.username },
+        {"id": foundUser._id, "username": foundUser.username,"name": foundUser.name, },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '7d' }
     )
@@ -78,6 +79,7 @@ const refresh = (req, res) => {
                 {
                     "UserInfo": {
                         "id": foundUser._id,
+                        "name": foundUser.name,
                         "username": foundUser.username,
                         "roles": foundUser.roles,
                         "image": foundUser.image
