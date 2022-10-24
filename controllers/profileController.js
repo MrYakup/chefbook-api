@@ -50,6 +50,20 @@ const getProfileBlogs = async (req, res) => {
     console.log("getProfileBlogs hatası");
   }
 };
+const getProfileRecipes = async (req, res) => {
+  const profileId = await req.params.id;
+  // console.log("profileId", profileId)
+  try {
+    const profileRecipes = await RecipeStore.find({ user: profileId }).then(
+      (profileRecipes) => res.json(profileRecipes)
+    ).catch(err => console.log("blogerr",err))
+    // const profileRecipes = await RecipeStore.find({ user: profileId }).then(
+    //   (profileRecipes) => res.json(profileRecipes)
+    // ).catch(err => console.log("recipeerr",err))
+  } catch (error) {
+    console.log("getProfileRecipes hatası");
+  }
+};
 
 const follow = async (req, res) => {
   const cookies =  req.cookies
@@ -101,5 +115,6 @@ const unfollow = async (req, res) => {
 
 exports.getProfileUser = getProfileUser;
 exports.getProfileBlogs = getProfileBlogs;
+exports.getProfileRecipes = getProfileRecipes;
 exports.follow = follow;
 exports.unfollow = unfollow;
